@@ -1,0 +1,33 @@
+<nav>
+    <input type="checkbox" id="hamburger">
+    <label for="hamburger" id="open-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <ul>
+        <label for="hamburger" id="close-menu">
+            <span></span>
+            <span></span>
+        </label>
+        <a href="/"><li><i class="fas fa-map-marked-alt"></i>BLOGRIGA</li></a>
+        <a href="/posts"><li>Explore</li></a>
+        <a href="/gallery"><li>Gallery</li></a>
+        <a href="/about"><li>About us</li></a>
+        <a>
+            <li>                
+                <form action="/search" method="POST" autocomplete="off">
+                    <input type="text" name="search" placeholder="SEARCH">
+                    <i class="fas fa-search" onclick="displaySearchBar()"></i>
+                </form>
+            </li>
+        </a>
+    </ul>
+</nav>
+
+<script>
+    let input = document.querySelector('input[name="search"]');
+    function displaySearchBar() {
+        input.focus();
+    }
+</script>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header><%- include('../partials/header'); %></header>
+    <div class="container">
+        <div id="post">
+            <div style="background-image: url('/media/post/<%= post.image %>')"></div>
+            <div id="post-txt">
+                <h1><%= post.title %></h1>
+                <h2><%= config.tags[post.tag] %></h2>
+                <p><%= post.content %></p>                            
+                <p>By <a href="/about"><strong></strong><%= config.authors[post.author] %></strong></a>, <span class="post-date"><%= post.date %></span></p>
+            </div>
+        </div>
+    </div>
+    <footer><%- include('../partials/footer'); %></footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "blogriga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js -e ejs,js,css,html,jpg,png,json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/humbertclaude.nathan/blogriga.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/humbertclaude.nathan/blogriga/issues"
+  },
+  "homepage": "https://gitlab.com/humbertclaude.nathan/blogriga#readme",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "reload": "^3.1.1"
+  }
+}

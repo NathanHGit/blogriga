@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header><%- include('../partials/header'); %></header>
+    <div id="bandeau">
+        <h1>Discover our <br> semester in Riga.</h1>
+    </div>
+    <div class="container home">
+        <div>
+            <div id="introduction">
+                <h2>Who we are ?</h2>
+                <div id="intro-txt">
+                    <p>
+                        Quae dum ita struuntur, indicatum est apud Tyrum indumentum regale textum occulte, 
+                        incertum quo locante vel cuius usibus apparatum. ideoque rector provinciae tunc pater Apollinaris 
+                        eiusdem nominis ut conscius ductus est aliique congregati sunt ex diversis civitatibus multi, 
+                        qui atrocium criminum ponderibus urgebantur.
+                    </p>
+                    <p>
+                        Montius nos tumore inusitato quodam et novo ut rebellis et 
+                        maiestati recalcitrantes Augustae per haec quae strepit incusat iratus nimirum quod contumacem praefectum, 
+                        quid rerum ordo postulat ignorare dissimulantem formidine tenus iusserim custodiri.
+                    </p>
+                </div>
+                <div id="intro-img"></div>
+            </div>
+        </div>
+        <div id="home-posts">
+            <h2>Lastest posts</h2>
+            <div>
+                <% posts.forEach(post => { %>
+                    <div class="post">
+                        <div class="post-img" style="background-image: url('/media/post/<%= post.image %>')"></div>
+                        <div class="post-txt">
+                            <a href="/post/<%= post.title %>">
+                                <h3><%= post.title %></h3>
+                            </a>
+                            <p>By <a href="/about"><%= config.authors[post.author] %></a>, <%= post.date %></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+        <div>
+        <div id="home-gallery">
+                <h2>Gallery</h2>
+                <div>
+                    <div></div>
+                    <div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <a href="/gallery">Access to the full galery <i class="fas fa-angle-double-right"></i></a>
+            </div>
+        </div>
+        <div>
+            <div id="home-map">
+                <h2>Our map diary</h2>
+                <div>
+                    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1qLMRIYsRfWX_oL7tKcxd6owdueP4QwGI"></iframe>
+                    <div id="home-map-txt">
+                        <p>Follow our adventures with the map.</p>
+                        <ul>
+                            <li><i class="fas fa-home"></i>Home</li>
+                            <li><i class="fas fa-star"></i>Visited places</li>
+                        </ul></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div id="home-vlogs">
+                <h2>Vlogs</h2>
+                <p>In progress... <i class="fas fa-compact-disc"></i></p>
+            </div>
+        </div>
+    </div>
+    <footer><%- include('../partials/footer'); %></footer>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header><%- include('../partials/header'); %></header>
+    <div class="container">
+        <div id="gallery">
+            <% images.forEach(image => { %>
+                <img src="/media/gallery/<%= image.link %>" alt="<%= image.legend %>" date="<%= image.date %>">
+            <% }) %>
+        </div>
+    </div>
+    <div id="zoom">
+        <div id="img">
+            <img src="" alt="">
+            <p id="img-txt"></p>
+            <span id="previous"></span>
+            <span id="next"></span>
+        </div>
+    </div>
+    <footer><%- include('../partials/footer'); %></footer>
+</body>
+</html>
+
+<script>
+    let images = document.querySelector('#gallery').querySelectorAll('img');
+    let zoom = document.getElementById('zoom');
+
+    let ind = 0;
+
+    function previous() {
+        if (ind > 0) {
+            ind--;
+            zoom.querySelector('img').src = images[ind].src;
+            zoom.querySelector('#img-txt').innerHTML = images[ind].alt + ', ' + images[ind].getAttribute('date');
+            disableArrow();
+        } 
+    }
+
+    function next() {
+        if (ind < images.length - 1) {
+            ind++;
+            zoom.querySelector('img').src = images[ind].src;
+            zoom.querySelector('#img-txt').innerHTML = images[ind].alt + ', ' + images[ind].getAttribute('date');
+            disableArrow();
+        }
+    }
+
+    function disableArrow() {
+        if (ind == 0) {
+            document.getElementById('previous').className = 'disable';
+        } else {
+            document.getElementById('previous').classList.remove('disable');
+        }
+        
+        if (ind == images.length - 1) {
+            document.getElementById('next').className = 'disable';
+        } else {
+            document.getElementById('next').classList.remove('disable');
+        }
+    }
+
+    function displayZoom() {
+        if (zoom.style.display == 'flex') {
+            zoom.style.display = 'none';
+            document.body.style.overflow = 'initial';
+        } else {
+            zoom.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    
+    zoom.addEventListener('click', event => {
+        if (event.target.nodeName == "DIV") displayZoom();
+    });
+
+    document.getElementById('previous').addEventListener('click', () => previous());
+    document.getElementById('next').addEventListener('click', () => next());
+
+    images.forEach(image => {
+        image.addEventListener('click', event => {
+            displayZoom();
+            zoom.querySelector('img').src = event.target.src;
+            zoom.querySelector('#img-txt').innerHTML = event.target.alt + ', ' + event.target.getAttribute('date');
+            ind = Array.prototype.indexOf.call(images, image);
+            console.log('tst');
+            disableArrow();
+        });
+    });
+
+    document.onkeydown = checkKey;
+
+    function checkKey(e) {
+        e = e || window.event;
+        if (e.keyCode == '37') {
+            previous();
+        }
+        else if (e.keyCode == '39') {
+            next();
+        } 
+        else if (e.keyCode == '27') {
+            if (zoom.style.display == 'flex') {
+                displayZoom();
+            }
+        }
+    }
+</script>

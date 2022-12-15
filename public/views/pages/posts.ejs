@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <header><%- include('../partials/header'); %></header>
+    <div class="container">
+        <div id="posts">
+            <h1>Explore</h1>
+            <% if (param != '') { %>
+                <h2><%= param %></h2>
+            <% } else { %>
+                <div class="filters">
+                    <div>
+                        Tags
+                        <div>
+                            <input type="radio" name="tags" id="all1" checked>
+                            <label for="all1">All</label>
+                            <% config.tags.forEach(tag => { %>
+                                <input type="radio" name="tags" id="<%= tag %>">
+                                <label for="<%= tag %>"><%= tag %></label>
+                            <% }) %>
+                        </div>
+                    </div>
+                   <div>
+                        Months
+                        <div>
+                            <input type="radio" name="months" id="all2" checked>
+                            <label for="all2">All</label>
+                            <% config.months.forEach(month => { %>
+                                <input type="radio" name="months" id="<%= month %>">
+                                <label for="<%= month %>"><%= month %></label>
+                            <% }) %>
+                        </div>
+                   </div>
+                </div>
+            <% } %>
+
+            <div id="posts-container">
+                <% posts.forEach(post => { %>
+                    <div class="post">
+                        <div class="post-img" style="background-image: url('/media/post/<%= post.image %>')"></div>
+                        <div class="post-txt">
+                            <h4 class="post-tag"><%= config.tags[post.tag] %></h4>
+                            <a href="/post/<%= post.title %>">
+                                <h3><%= post.title %></h3>
+                            </a>
+                            <p>By <a href="/about"><strong></strong><%= config.authors[post.author] %></strong></a>, <span class="post-date"><%= post.date %></span></p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <footer><%- include('../partials/footer'); %></footer>
+</body>
+</html>
+
+<script>
+    let posts = document.querySelectorAll('.post');
+    let radio = document.querySelectorAll('input[type="radio"]');
+    var months = ["January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"];
+
+    radio.forEach(button => {
+        button.addEventListener('click', event => {
+            let filters = [];
+
+            for (let i = 0; i < radio.length; i++) {
+                if (radio[i].checked) {
+                    filters.push(radio[i].id);
+                }
+            }
+
+            posts.forEach(post => {
+                if ((filters[0].includes('all') ? true : post.querySelector('.post-tag').innerHTML == filters[0]) &&
+                (filters[1].includes('all') ? true : 
+                months[parseInt(post.querySelector('.post-date').innerHTML.split('/')[1] - 1)] == filters[1])) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        })
+    });
+</script>

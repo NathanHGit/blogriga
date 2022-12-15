@@ -1,0 +1,26 @@
+[
+    {
+        "author" : "0",
+        "date" : "2021/01/24",
+        "tag" : "0",
+        "title" : "6 months in Riga",
+        "image" : "1.png",
+        "content" : "Riga riga"
+    },
+    {
+        "author" : "1",
+        "date" : "2021/01/25",
+        "tag" : "1",
+        "title" : "Welcome to Riga",
+        "image" : "3.jpg",
+        "content" : "My first travel"
+    },
+    {
+        "author" : "1",
+        "date" : "2021/02/01",
+        "tag" : "1",
+        "title" : "Our flight",
+        "image" : "4.jpeg",
+        "content" : "Nantes - Amsterdam - Riga"
+    }
+]
